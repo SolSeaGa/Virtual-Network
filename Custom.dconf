@@ -1,35 +1,111 @@
 [General]
-#!include Custom.dconf
+# 日志级别
+loglevel = notify
+# 排除简单主机名
+exclude-simple-hostnames = true
+# 真实 IP 地址
+always-real-ip = *stun*, *.lan, *.local
+# 跳过代理
+skip-proxy = 127.0.0.1, 192.168.0.0/24, 10.0.0.0/8, 172.16.0.0/12, localhost, *.local, ::1, fe80::/10, fd00::/8
+
+# DNS 服务器
+dns-server = system, 223.5.5.5, 119.29.29.29
+# 加密 DNS 服务器
+encrypted-dns-server = quic://223.5.5.5, h3://223.5.5.5/dns-query, https://223.5.5.5/dns-query
+# DNS 劫持（强制接管指定 DNS 的 53 端口请求）
+hijack-dns = *:53
+
+# 直连策略的默认测试 URL
+internet-test-url = http://connectivitycheck.platform.hicloud.com/generate_204
+# 代理策略的默认测试 URL
+proxy-test-url = http://cp.cloudflare.com/generate_204
+# 代理默认的 UDP 测试
+proxy-test-udp = cloudflare.com@1.1.1.1
+# 测试超时（秒）
+test-timeout = 3
+
+# GeoIP 数据库
+geoip-maxmind-url = https://github.com/Hackl0us/GeoIP2-CN/raw/release/Country.mmdb
+
+# 当请求遇到错误时显示 HTTP 错误页面
+show-error-page = true
+# 如果请求是普通 HTTP 请求，为 REJECT 策略显示错误网页
+show-error-page-for-reject = true
+# UDP 退回行为（当节点不支持 UDP 时直接拒绝，防止数据泄露）
+udp-policy-not-supported-behaviour = reject
+
+# HTTP 代理监听地址及端口
+http-listen = 0.0.0.0:8989
+# SOCKS5 代理监听地址及端口
+socks5-listen = 0.0.0.0:9898
 
 [Ponte]
-#!include Custom.dconf
-
-[Proxy Group]
-# PROXY & FINAL
-Proxy = select, DIRECT, HK, TW, JP, SG, US, Edge, AnyTLS, category=Rule, icon-url=B1::Astrology::Fire
-Final = select, DIRECT, HK, TW, JP, SG, US, Edge, AnyTLS, category=Rule, icon-url=B1::Industry::Water
-# 苹果 & 推送通知服务
-APNs = select, DIRECT, HK, TW, JP, SG, US, Edge, AnyTLS, category=Rule, icon-url=B1::Farming::Apple
-Apple = select, DIRECT, HK, TW, JP, SG, US, Edge, AnyTLS, category=Rule, icon-url=B1::Plants::Bitten Apple
-# 流媒体策略组
-Streaming = select, DIRECT, HK, TW, JP, SG, US, Edge, AnyTLS, category=Rule, icon-url=B1::Music::Disco Ball
-Film = select, DIRECT, HK, TW, JP, SG, US, Edge, AnyTLS, category=Rule, icon-url=B1::Music::Disco Ball
-# 游戏策略组
-Gaming = select, DIRECT, HK, TW, JP, SG, US, Edge, AnyTLS, category=Rule, icon-url=B1::Gaming::Game Controller
-# 智能策略组
-Intelligence = select, include-other-group=AnyTLS, policy-regex-filter=AI, category=Rule, icon-url=B1::Science::Artificial Intelligence
-# 地区策略组
-HK = smart, include-other-group=AnyTLS, policy-regex-filter=HK, category=Region, icon-url=B1::Maps::World Map(3), policy-priority=Private:0.8;Public:1.2
-TW = smart, include-other-group=AnyTLS, policy-regex-filter=TW, category=Region, icon-url=B1::Maps::World Map(3)
-JP = smart, include-other-group=AnyTLS, policy-regex-filter=JP, category=Region, icon-url=B1::Maps::World Map(3)
-SG = smart, include-other-group=AnyTLS, policy-regex-filter=SG, category=Region, icon-url=B1::Maps::World Map(3)
-US = smart, include-other-group=AnyTLS, policy-regex-filter=US, category=Region, icon-url=B1::Maps::World Map(3), policy-priority=Private:0.8;Public:1.2
-Edge = select, include-other-group=AnyTLS, policy-regex-filter=^(?!.*(HK|TW|JP|SG|US|AI)).*$, category=Region, icon-url=B1::Maps::World Map
-# 订阅链接
-AnyTLS = select, policy-path=https://sub.store/download/Fries-AnyTLS, category=Subscribe, icon-url=B1::Messaging::Inbox(5)
+server-proxy-name= HK
+client-proxy-name= HK
 
 [Rule]
-#!include Custom.dconf
+# 临境 Liminal EA
+DOMAIN-SUFFIX,liminalnet.us,Film
+DOMAIN-SUFFIX,liminalnet.org,Film
+DOMAIN-SUFFIX,552554.xyz,Film
+# 临境 Liminal 302
+IP-CIDR,211.154.22.60/32,DIRECT,no-resolve
+
+# 墨云阁 MoYunGe
+DOMAIN-SUFFIX,mobaiemby.site,Film
+# 反向代理 - 亦心
+DOMAIN-SUFFIX,de5.net,DIRECT
+DOMAIN-SUFFIX,ccwu.cc,DIRECT
+
+# 广告拦截
+# DOMAIN-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/AD-Blocking.list,REJECT
+
+# 人工智能
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/Intelligence/AI-China.list,DIRECT
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/Intelligence/AI-Google.list,JP
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/Intelligence/AI.list,Intelligence
+# Apple Inc.
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/Corporation/Apple-APNS.list,APNs
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/Corporation/Apple.list,Apple
+
+# 游戏规则
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/Arcade.list,Arcade
+
+# 自定义 App 规则
+# Speedtest
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/Corporation/App/Speedtest.list,DIRECT,extended-matching
+# Telegram
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/Corporation/App/Telegram.list,Proxy
+# TikTok
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/Corporation/App/TikTok.list,TW
+# PayPal
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/Corporation/App/PayPal.list,US
+# Ultra Mobile
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/Corporation/App/Ultra-Mobile.list,US
+
+# 国际流媒体
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/Global-Streaming.list,Streaming
+# Google LLC
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/Corporation/Google.list,Proxy
+# Microsoft Corporation
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/Corporation/Microsoft.list,DIRECT
+
+# 国内 / 国外规则
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/Global.list,Proxy
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/CN.list,DIRECT
+# 国内 / 国外 CDN 规则
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/CDN-Global.list,Proxy
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/CDN-CN.list,DIRECT
+# 中国 IP-ASN 规则
+RULE-SET,https://raw.githubusercontent.com/SolSeaGa/Virtual-Network/refs/heads/main/Rules/ASN-China.list,DIRECT
+
+# 局域网地址
+RULE-SET,LAN,DIRECT
+# DNS 查询失败走 Final 规则
+FINAL,Final,dns-failed
 
 [MITM]
-#!include Custom.dconf
+skip-server-cert-verify = true
+h2 = true
+ca-passphrase = 56E23D77
+ca-p12 = MIIK3gIBAzCCCpwGCSqGSIb3DQEHAaCCCo0EggqJMIIKhTCCBKoGCSqGSIb3DQEHBqCCBJswggSXAgEAMIIEkAYJKoZIhvcNAQcBMF8GCSqGSIb3DQEFDTBSMDEGCSqGSIb3DQEFDDAkBBDKK+yXismWxRIVxISTKSegAgIIADAMBggqhkiG9w0CCQUAMB0GCWCGSAFlAwQBKgQQdtyJGhotsGTbc6GWsY4K8ICCBCBjJGaqi/i6+N1Y9aw/V0DBRLyNxIhLAkRIu/o7k/HQMnHkpI1tzV2NTWMQD7w4lJHJWQOOMX8xsmFn95ZariGCdmuLmEfFdCe99YoRZAEPQxT3nYlBG30IIDsQY5fHeRlPJEatWzmd+QZV5WiRREvMWlJhUSN4HC9L++Ac3p/9uUTo9boR0XhHyP/o5Y5DOWSoA3QCrmmZx9qyqmDv7cfiwQ/vGNa1Ppr0nOYsrkjGsstP53j6TDfxaibkALVYPhCagPRsmjWVbPTPM/PZtByHTdS/St3TmsBwgjtTWz5Kz4rIgozK88YGY3ZWKYDUuOdvT4kBQyHXcizb1wMAUTlfiruccAJBIUYSr0Cl/rz+sD6Zg6o86VOw0f5e5KoSNKp30Rjo3QWb9ALM3dEYL94xvKXL+mUQM59Z/Dgio+JDJK7wXv00MaeSCsUhG02e6Y3xGxnQEAToklmXuxgEXSkfi/1n1xy+b+gs9OBmqrL5EbXOjnyxkA0Tjbj8UAX5rkqzh08wbJY/9GQvluOGfGIbKe60Mee1KtXM/0FkcL5vmVSj2JOaRfb3U6MAoi6wMjHcG5NJz8n9PcCJvOglLu6wl1UeTzrnBEdITZ2j/Nkpt1TmAPIYOiqHzefBDqOxVILV68b9/mBOm2pmwwCBuBlQF52AG4Yv+uxtjv8IDBJuwJjneW/R3TKyJGaXBCwD+98hef3JGf3debgSMk8cTRmvpUkaSptcl/rPZzssox7+WMMsWJwhocMAsSlp8tnnNFxV1OLKCKP+WY7HYrKoWcUW3J58V/yE3nSKwbO/9mPpYNGPD9mN0s5UFAA6ciIjyJ2UUhafC4IYp9fF/DcxsE3Tfe1DzqMsr0DyjBhvaMI6cgaKT1i004DJmkVkpIw5fZFZ1+oZy26v9ZK7P4MHeCNk6+jPB2cze/8HyteNddurZSkfr2g+6SBmC3b0jRuoqPT/FCKEXINtM8QnzchDfLEz0BV+vOqGIXMH9pImONL7gCkVyFESJ9eP9OGD5fgKuMrDNIB0RVQmJH+D7dPYYn2Y87RxRgKu3LR30FuY1X7n8T393Z2OExxajVwqlR2fFWmMlK067xif/b30k/jI4USJxsLJNAY/bNJ2yXrDlVKhtqw0plv3zSp1un51i1Etho3lcoBKnTkQ6mqOXuKkUxK/DY6V+zEJrNPKu2QAigQqgnPuu94hJXBDvVG6ixgwEf596Pj/XfUEzVmvUsz4I3H/6c3Bg/AqQHwBGqshvO9gJ4TJLgfG1iESgI/UMY+XZMxZNS/XDym8YBEMafu5BSG3EB+z80GKgtZe5w1i8H/eh0V081jC229IJ5w0ZsYuL7OJgeNL1Bj2A2eWNZLJ5ez1+/GtmH/7ngwdxwVczEf279mFtfwnSuAyWjYv/sNeJZEwggXTBgkqhkiG9w0BBwGgggXEBIIFwDCCBbwwggW4BgsqhkiG9w0BDAoBAqCCBTkwggU1MF8GCSqGSIb3DQEFDTBSMDEGCSqGSIb3DQEFDDAkBBD9tMhNqx+J1b+lCw4HdwHyAgIIADAMBggqhkiG9w0CCQUAMB0GCWCGSAFlAwQBKgQQdd2V3NbAZxdEZD90t83wUwSCBNBi8/v2xF3sXWvkCYuiNVTShk8mH2/9PhgwrvktCXmkRpDjmI5z6jONDBI+dFNIwgzCace8PfcgDTKCaUPEXf14LfyTdfXs+Ly5JdR5D15in5FWX1Wknp+1wHWYKP2u0+AAcq6kiV9aDWIErOyhkTh21fHij+EwsBCDP4FeJsP9UMSejxuKgp/ePuQw2LbQ7ng6bpR4U4mYfE/i2e4YOL16hBh7iqjuQH/EHLRcMjNUbjncCepYe3Fq7N2GorjFY2gIFOcI6nQNngUuB//4qGWWur9Tq/HyTbm6+3oXM4VJSJV8jgQJktbggPDpGn5tyLsX1huz8gxNRq6BO+OO3F4csd3cgFsBOOjpX5mVweFj0ngbdqhwTmxXAbbaCL5ZV0TXzJkYfusk9UdAgf4OXo39wjAU8xmfMBe5EfTs4lbxPZm7OKM3j9dUgiq3ndUp5dBNIcSYQTMhQkgRTMDE7LSJ9EYzW03JaznS37vJ8WC22acAKuMrA4+45jSX58YJJCCls4AYBr/iDA0kMFD1a45nznqMrVn0t65NAv/iEu2VHWO2nRC2ddlEGtx6zCug4HHUB3Eu68CIwAhQib9WaG+8BAtl8OCIAwOVzxfI5+/TKd4Ug0UC8KOgxfpp3dYgIf3h0BApv1VnLLaPJ7oohIKfLg6KYCnjInMJ4IdJOISj7uf92Zh2NOMQSziFH+1Nvx/DAnlqA6Nj/VXvAfLMfrv6hBDEzKojlI8SVf1tf7/+XHurxh/rV+PsNs+cF+w9puIFhZaRV4UagkdjlhDnGwHZOD/9Gp3OUFVHW/cPc9Rv2jZgVIToir9CjxTrU0QQYqZkBO+6VZ//Ht60d/9TuOFD2mfRykwjPKA0b0lJda8beMEpzZsO8zGHEDuAUipAv7B3ODjW8Bmt+CBeT9hQkMHYwmP+QJLNZG2pVvYzOgsSfWQEM1tJwq6lTRWPkbxxqpv14i4/EK6EWrlJ+KxlZgkiI7d33q0IuLwmO6JvDYY7omw/QeFdUvn0f3xwjghWXlk+/lxxkK0hEMkfH63WfRJ5dN0nn82E3m5sT4WimCLieWdSEkgJydey1574lkvjY8bypl018yMpLcNJdv+DvCmj9HVrPokDSKWmEE8TWwNHyTLf8vpQ6TpNphs5O/uoR6R2FlJMcrePzpatlxUtC9yzRb9Eg/zfIGhQTbvVgu+zPEEbwPvr4Che2kwSjMY7+u0Uo2gSmyetHe5RLdgOghLFMSaagLbCD5atNWN9rqvxKDNXwqJABisXVVOeBnKp9zV7Zx96wITfeKfEKGjkRrfJWMSIzgiaULUqoiJx4ELcPCql1bj9wX60tPzWaOscvesHJQwokZ8r4EWVyDlROwNBZYLVtKV4dniYcaFIug4vRb+YXBx3+ZJMdW3hyLgQ6MQ8C/TaBtbuhDIPOBlU8SKi4SRKG0SDYsqj/o6ENBRQBN2II86n/dcehmnsycc0q1WQTk9rI+GVfWqv4MUEuz960wxpqFmk0rI/IHl8XcKpgagWiC34tjnHCKGAP3c+52Fny++ZuavtdQ4krm8B1GptdDJlCQnZKV6fVFNrHJo1Ctb1/Rtwh2iS87k8ZoenXm/zXDviZa16jQhsoBY8UNdqJBjmgEh18j9Z0q4u62bNnDFsMCMGCSqGSIb3DQEJFTEWBBQfomhsYVmWWegl4siNq6jXJKBW+zBFBgkqhkiG9w0BCRQxOB42AFMAdQByAGcAZQAgAEcAZQBuAGUAcgBhAHQAZQBkACAAQwBBACAANQA2AEUAMgAzAEQANwA3MDkwITAJBgUrDgMCGgUABBSWuvqOgDEihZAXtv3UT5y247pBJQQQCEcpcysToTI2faLCy7d2NQICCAA=
