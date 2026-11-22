@@ -1,2 +1,2 @@
-# SolSeaGa
-Configuration for proxy software; for personal use only.
+# illustrate
+For personal use only; includes rules, modules, and configurations.
