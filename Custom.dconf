@@ -94,5 +94,5 @@ FINAL,Final,dns-failed
 [MITM]
 skip-server-cert-verify = true
 h2 = true
-ca-passphrase = 56E23D77
+ca-passphrase = 
 ca-p12 = 
