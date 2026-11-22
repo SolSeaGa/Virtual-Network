@@ -1,0 +1,35 @@
+[General]
+#!include Custom.dconf
+
+[Ponte]
+#!include Custom.dconf
+
+[Proxy Group]
+# PROXY & FINAL
+Proxy = select, DIRECT, HK, TW, JP, SG, US, Edge, AnyTLS, category=Rule, icon-url=B1::Astrology::Fire
+Final = select, DIRECT, HK, TW, JP, SG, US, Edge, AnyTLS, category=Rule, icon-url=B1::Industry::Water
+# 苹果 & 推送通知服务
+APNs = select, DIRECT, HK, TW, JP, SG, US, Edge, AnyTLS, category=Rule, icon-url=B1::Farming::Apple
+Apple = select, DIRECT, HK, TW, JP, SG, US, Edge, AnyTLS, category=Rule, icon-url=B1::Plants::Bitten Apple
+# 流媒体策略组
+Streaming = select, DIRECT, HK, TW, JP, SG, US, Edge, AnyTLS, category=Rule, icon-url=B1::Music::Disco Ball
+Film = select, DIRECT, HK, TW, JP, SG, US, Edge, AnyTLS, category=Rule, icon-url=B1::Music::Disco Ball
+# 游戏策略组
+Gaming = select, DIRECT, HK, TW, JP, SG, US, Edge, AnyTLS, category=Rule, icon-url=B1::Gaming::Game Controller
+# 智能策略组
+Intelligence = select, include-other-group=AnyTLS, policy-regex-filter=AI, category=Rule, icon-url=B1::Science::Artificial Intelligence
+# 地区策略组
+HK = smart, include-other-group=AnyTLS, policy-regex-filter=HK, category=Region, icon-url=B1::Maps::World Map(3), policy-priority=Private:0.8;Public:1.2
+TW = smart, include-other-group=AnyTLS, policy-regex-filter=TW, category=Region, icon-url=B1::Maps::World Map(3)
+JP = smart, include-other-group=AnyTLS, policy-regex-filter=JP, category=Region, icon-url=B1::Maps::World Map(3)
+SG = smart, include-other-group=AnyTLS, policy-regex-filter=SG, category=Region, icon-url=B1::Maps::World Map(3)
+US = smart, include-other-group=AnyTLS, policy-regex-filter=US, category=Region, icon-url=B1::Maps::World Map(3), policy-priority=Private:0.8;Public:1.2
+Edge = select, include-other-group=AnyTLS, policy-regex-filter=^(?!.*(HK|TW|JP|SG|US|AI)).*$, category=Region, icon-url=B1::Maps::World Map
+# 订阅链接
+AnyTLS = select, policy-path=https://sub.store/download/Fries-AnyTLS, category=Subscribe, icon-url=B1::Messaging::Inbox(5)
+
+[Rule]
+#!include Custom.dconf
+
+[MITM]
+#!include Custom.dconf

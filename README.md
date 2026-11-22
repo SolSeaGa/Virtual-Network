@@ -1,2 +1,2 @@
-# Virtual-Network
-Applicable exclusively to proxy software configurations for SolSeaGa; includes routing rules, modules, and configuration settings.
+# SolSeaGa
+Configuration for proxy software; for personal use only.
