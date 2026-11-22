@@ -23,7 +23,6 @@ proxy-test-url = http://cp.cloudflare.com/generate_204
 proxy-test-udp = cloudflare.com@1.1.1.1
 # 测试超时（秒）
 test-timeout = 3
-
 # GeoIP 数据库
 geoip-maxmind-url = https://github.com/Hackl0us/GeoIP2-CN/raw/release/Country.mmdb
 
@@ -35,9 +34,9 @@ show-error-page-for-reject = true
 udp-policy-not-supported-behaviour = reject
 
 # HTTP 代理监听地址及端口
-http-listen = 0.0.0.0:8989
+# http-listen = 0.0.0.0:8989
 # SOCKS5 代理监听地址及端口
-socks5-listen = 0.0.0.0:9898
+# socks5-listen = 0.0.0.0:9898
 
 [Ponte]
 server-proxy-name= HK
