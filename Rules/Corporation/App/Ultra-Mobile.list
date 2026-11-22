@@ -1,0 +1,12 @@
+# Ultra Mobile
+DOMAIN-SUFFIX,ultra.me,US
+DOMAIN-SUFFIX,ultramobile.com,US
+DOMAIN-SUFFIX,t-mobile.com,US
+DOMAIN-SUFFIX,3gppnetwork.org,US
+DOMAIN-SUFFIX,epdg.epc.mnc240.mcc310.pub.3gppnetwork.org,US
+DOMAIN-SUFFIX,epdg.epc.mnc260.mcc310.pub.3gppnetwork.org,US
+DOMAIN-SUFFIX,ss.epdg.epc.mnc260.mcc310.pub.3gppnetwork.org,US
+# Ultra Mobile 规则 / IP-CIDR
+IP-CIDR,206.29.177.36/32,US,no-resolve
+IP-CIDR,208.54.0.0/16,US,no-resolve
+IP-CIDR,66.94.0.0/19,US,no-resolve
