@@ -2024,6 +2024,8 @@ DOMAIN-SUFFIX,entermediadb.org
 ## > Entrust
 DOMAIN-SUFFIX,entrust.net
 DOMAIN-SUFFIX,entrustdatacard.com
+## > Threads
+DOMAIN-SUFFIX,threads.net
 ## > Facebook
 DOMAIN-SUFFIX,aboutfacebook.com
 DOMAIN-SUFFIX,accessfacebookfromschool.com
@@ -2534,8 +2536,6 @@ DOMAIN-SUFFIX,onlineinstagram.com
 DOMAIN-SUFFIX,theinstagramhack.com
 DOMAIN-SUFFIX,web-instagram.net
 DOMAIN-SUFFIX,wwwinstagram.com
-# >> Threads
-DOMAIN-SUFFIX,threads.net
 # >> Messenger
 DOMAIN-SUFFIX,fbmessenger.com
 DOMAIN-SUFFIX,m.me
