@@ -7,7 +7,7 @@
 	"Streaming":{"userCardBackgroundIdx":0,"cardBackgroundIdx":0,"autoColoredIcon":"B1::Music::Disco Ball"},
 	"Film":{"userCardBackgroundIdx":0,"cardBackgroundIdx":0,"autoColoredIcon":"B1::Music::Disco Ball"},
 	"Arcade":{"userCardBackgroundIdx":0,"cardBackgroundIdx":0,"autoColoredIcon":"B1::Gaming::Game Controller"},
-	"Intelligence":{"userCardBackgroundIdx":0,"cardBackgroundIdx":0,"autoColoredIcon":"B1::Science::Artificial Intelligence"},
+	"AI":{"userCardBackgroundIdx":0,"cardBackgroundIdx":0,"autoColoredIcon":"B1::Science::Artificial Intelligence"},
 	"HK":{"userCardBackgroundIdx":0,"cardBackgroundIdx":0,"autoColoredIcon":"B1::Maps::World Map(3)"},
 	"TW":{"userCardBackgroundIdx":0,"cardBackgroundIdx":0,"autoColoredIcon":"B1::Maps::World Map(3)"},
 	"JP":{"userCardBackgroundIdx":0,"cardBackgroundIdx":0,"autoColoredIcon":"B1::Maps::World Map(3)"},
@@ -17,5 +17,5 @@
 	"FR":{"userCardBackgroundIdx":0,"cardBackgroundIdx":0,"autoColoredIcon":"B1::Maps::World Map(3)"},
 	"AnyTLS":{"userCardBackgroundIdx":0,"cardBackgroundIdx":0,"autoColoredIcon":"B1::Messaging::Inbox(5)"},
 	"VLESS":{"userCardBackgroundIdx":0,"cardBackgroundIdx":0,"autoColoredIcon":"B1::Messaging::Inbox(5)"},
-	"Online":{"userCardBackgroundIdx":0,"cardBackgroundIdx":0,"autoColoredIcon":"B1::Messaging::Inbox(5)"}
+	"Fries":{"userCardBackgroundIdx":0,"cardBackgroundIdx":0,"autoColoredIcon":"B1::Messaging::Inbox(5)"}
 },"version":1}
